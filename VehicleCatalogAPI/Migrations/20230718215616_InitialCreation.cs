@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -14,8 +15,7 @@ namespace VehicleCatalogAPI.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(160)", maxLength: 160, nullable: false),
                     CellPhone = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
@@ -30,8 +30,7 @@ namespace VehicleCatalogAPI.Migrations
                 name: "Vehicle",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
                     Brand = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
                     Model = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),

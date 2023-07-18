@@ -18,7 +18,7 @@ public class UserController : ControllerBase
         _userService = userService;
     }
 
-    [HttpGet("v1/users/{id:int}")]
+    /* [HttpGet("v1/users/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
     {
         try
@@ -33,7 +33,7 @@ public class UserController : ControllerBase
         {
             return StatusCode(500, new ResultDto<User>("Internal server error!"));
         }
-    }
+    } */
 
     //[AllowAnonymous]
     [HttpPost("v1/users")]

@@ -4,15 +4,16 @@ public class Vehicle
 {
     public Vehicle(string name, string brand, string model, string image)
     {
+        Id = Guid.NewGuid();
         Name = name;
         Brand = brand;
         Model = model;
         Image = image;
     }
 
-    public int Id { get; set; } = 0;
-    public string Name { get; private set; }
-    public string Brand { get; private set; }
-    public string Model { get; private set; }
-    public string Image { get; private set; }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public string Brand { get; set; }
+    public string Model { get; set; }
+    public string Image { get; set; }
 }

@@ -13,9 +13,9 @@ public class UserService
         _repository = repository;
     }
 
-    public async Task<User> GetByIdAsync(int userId)
+    public async Task<User> GetByEmailAsync(string email)
     {
-        return await _repository.GetByIdAsync(userId);
+        return await _repository.GetByEmailAsync(email);
     }
 
     public async Task<User> AddAsync(AddUserDto dto)

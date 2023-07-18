@@ -59,5 +59,6 @@ public static class AppExtensions
         builder.Services.AddDbContext<VehicleCatalogDbContext>(options => options.UseSqlServer(connectionString));
         builder.Services.AddTransient<IUserRepository, UserRepository>();
         builder.Services.AddTransient<UserService>();
+        builder.Services.AddTransient<TokenService>();
     }
 }

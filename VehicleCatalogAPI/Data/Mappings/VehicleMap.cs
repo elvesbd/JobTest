@@ -11,8 +11,7 @@ public class VehicleMap : IEntityTypeConfiguration<Vehicle>
         builder.ToTable("Vehicle");
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id)
-            .ValueGeneratedOnAdd()
-            .UseIdentityColumn();
+            .ValueGeneratedOnAdd();
 
         builder.Property("Name")
                .IsRequired()

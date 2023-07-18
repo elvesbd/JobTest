@@ -7,13 +7,14 @@ public class User
 
     public User(string name, string email, string cellPhone, string passwordHash)
     {
+        Id = Guid.NewGuid();
         Name = name;
         Email = email;
         CellPhone = cellPhone;
         PasswordHash = passwordHash;
     }
 
-    public int Id { get; set; } = 0;
+    public Guid Id { get; set; }
     public string? Name { get; set; }
     public string? Email { get; set; }
     public string? CellPhone { get; set; }
