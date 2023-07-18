@@ -2,6 +2,7 @@ using VehicleCatalogAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.ConfigureMvc();
+builder.ConfigureServices();
 
 var app = builder.Build();
 
