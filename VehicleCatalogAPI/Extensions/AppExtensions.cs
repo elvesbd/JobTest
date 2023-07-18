@@ -10,7 +10,13 @@ public static class AppExtensions
 {
     public static void ConfigureMvc(this WebApplicationBuilder builder)
     {
-        builder.Services.AddControllers();
+        builder.Services
+        .AddControllers()
+        .ConfigureApiBehaviorOptions(options =>
+        {
+            options.SuppressModelStateInvalidFilter = true;
+        });
+
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 

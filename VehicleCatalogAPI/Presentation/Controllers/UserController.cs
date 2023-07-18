@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using VehicleCatalogAPI.Domain.Models;
 using VehicleCatalogAPI.DTOs.User;
 using VehicleCatalogAPI.Services;
+using VehicleCatalogAPI.DTOs;
+using VehicleCatalogAPI.Extensions;
 
 namespace VehicleCatalogAPI.Presentation.Controllers;
 
@@ -17,17 +19,25 @@ public class UserController : ControllerBase
     [HttpGet("v1/users/{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
     {
-        var user = await _userService.GetByIdAsync(id);
-        if (user == null)
-            return NotFound("User not found!");
-        return Ok(user);
+        try
+        {
+            var user = await _userService.GetByIdAsync(id);
+            if (user == null)
+                return NotFound(new ResultDto<User>("User not found!"));
+
+            return Ok(new ResultDto<User>(user));
+        }
+        catch (System.Exception)
+        {
+            return StatusCode(500, new ResultDto<User>("Internal server error!"));
+        }
     }
 
     [HttpPost("v1/users")]
     public async Task<IActionResult> AddAsync([FromBody] AddUserDto dto)
     {
         if (!ModelState.IsValid)
-            return BadRequest("");
+            return BadRequest(new ResultDto<string>(ModelState.GetErrors()));
 
         var user = new User
         {
@@ -37,6 +47,6 @@ public class UserController : ControllerBase
         };
 
         await _userService.AddAsync(user);
-        return Ok(user);
+        return Created($"v1/categories/{user.Id}", new ResultDto<User>(user));
     }
 }
