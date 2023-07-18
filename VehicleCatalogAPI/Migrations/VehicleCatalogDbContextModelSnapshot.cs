@@ -47,6 +47,12 @@ namespace VehicleCatalogAPI.Migrations
                         .HasColumnType("VARCHAR")
                         .HasColumnName("Name");
 
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("NVARCHAR")
+                        .HasColumnName("PasswordHash");
+
                     b.HasKey("Id");
 
                     b.ToTable("User", (string)null);

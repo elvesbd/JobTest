@@ -1,6 +1,7 @@
 using VehicleCatalogAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.ConfigureAuthentication();
 builder.ConfigureMvc();
 builder.ConfigureServices();
 
@@ -13,6 +14,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 

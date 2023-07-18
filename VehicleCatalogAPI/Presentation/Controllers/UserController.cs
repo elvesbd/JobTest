@@ -4,9 +4,11 @@ using VehicleCatalogAPI.DTOs.User;
 using VehicleCatalogAPI.Services;
 using VehicleCatalogAPI.DTOs;
 using VehicleCatalogAPI.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace VehicleCatalogAPI.Presentation.Controllers;
 
+//[Authorize]
 [ApiController]
 public class UserController : ControllerBase
 {
@@ -33,20 +35,21 @@ public class UserController : ControllerBase
         }
     }
 
+    //[AllowAnonymous]
     [HttpPost("v1/users")]
     public async Task<IActionResult> AddAsync([FromBody] AddUserDto dto)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(new ResultDto<string>(ModelState.GetErrors()));
-
-        var user = new User
+        try
         {
-            Name = dto.Name,
-            Email = dto.Email,
-            CellPhone = dto.CellPhone
-        };
+            if (!ModelState.IsValid)
+                return BadRequest(new ResultDto<string>(ModelState.GetErrors()));
 
-        await _userService.AddAsync(user);
-        return Created($"v1/categories/{user.Id}", new ResultDto<User>(user));
+            var user = await _userService.AddAsync(dto);
+            return Created($"v1/categories/{user.Id}", new ResultDto<User>(user));
+        }
+        catch (DbUpdateException)
+        {
+            return StatusCode(400, new ResultDto<string>("This email already in use!"));
+        }
     }
 }

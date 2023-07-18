@@ -31,5 +31,11 @@ public class UserMap : IEntityTypeConfiguration<User>
                .HasColumnName("CellPhone")
                .HasColumnType("VARCHAR")
                .HasMaxLength(80);
+
+        builder.Property("PasswordHash")
+               .IsRequired()
+               .HasColumnName("PasswordHash")
+               .HasColumnType("NVARCHAR")
+               .HasMaxLength(50);
     }
 }

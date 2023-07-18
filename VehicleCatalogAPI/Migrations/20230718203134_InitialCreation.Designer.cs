@@ -11,7 +11,7 @@ using VehicleCatalogAPI.Data;
 namespace VehicleCatalogAPI.Migrations
 {
     [DbContext(typeof(VehicleCatalogDbContext))]
-    [Migration("20230718145741_InitialCreation")]
+    [Migration("20230718203134_InitialCreation")]
     partial class InitialCreation
     {
         /// <inheritdoc />
@@ -49,6 +49,12 @@ namespace VehicleCatalogAPI.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("VARCHAR")
                         .HasColumnName("Name");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("NVARCHAR")
+                        .HasColumnName("PasswordHash");
 
                     b.HasKey("Id");
 

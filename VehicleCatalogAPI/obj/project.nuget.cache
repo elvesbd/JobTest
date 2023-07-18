@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "08GbaIWInLSlooWIO22/acwyWiFjhv4jklo6mM3p8h0+mf4ju664+C2n3HXh5QEhOBVJ01TfGQMVyANOLvXePQ==",
+  "dgSpecHash": "hS6DLaefP5HeinFAYG/0R/FtbSUr/fayP8R6EDU2aBASqtpFvCtHZejESTKPn3aKwWdWm1mr9auwwHLjLUqF3A==",
   "success": true,
   "projectFilePath": "/home/ebd/ebd/job_tests/VehicleCatalogAPI/VehicleCatalogAPI.csproj",
   "expectedPackageFiles": [
@@ -74,6 +74,7 @@
     "/home/ebd/.nuget/packages/runtime.any.system.threading.tasks/4.3.0/runtime.any.system.threading.tasks.4.3.0.nupkg.sha512",
     "/home/ebd/.nuget/packages/runtime.native.system/4.3.0/runtime.native.system.4.3.0.nupkg.sha512",
     "/home/ebd/.nuget/packages/runtime.unix.system.private.uri/4.3.0/runtime.unix.system.private.uri.4.3.0.nupkg.sha512",
+    "/home/ebd/.nuget/packages/secureidentity/1.0.4/secureidentity.1.0.4.nupkg.sha512",
     "/home/ebd/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "/home/ebd/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "/home/ebd/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
