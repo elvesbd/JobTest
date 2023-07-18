@@ -14,7 +14,7 @@ public class UserRepository : IUserRepository
     }
 
 
-    public async Task<User?> GetByIdAsync(Guid userId)
+    public async Task<User> GetByIdAsync(int userId)
     {
         return await _dbContext.Users
             .FirstOrDefaultAsync(x => x.Id == userId);
@@ -25,5 +25,10 @@ public class UserRepository : IUserRepository
         await _dbContext.AddAsync(user);
         await _dbContext.SaveChangesAsync();
         return user;
+    }
+
+    public Task<User?> GetByIdAsync(Guid userId)
+    {
+        throw new NotImplementedException();
     }
 }
