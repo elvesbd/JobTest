@@ -49,7 +49,7 @@ namespace VehicleCatalogAPI.Migrations
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(50)
+                        .HasMaxLength(150)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("PasswordHash");
 

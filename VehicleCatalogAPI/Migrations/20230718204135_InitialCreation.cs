@@ -19,7 +19,7 @@ namespace VehicleCatalogAPI.Migrations
                     Name = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(160)", maxLength: 160, nullable: false),
                     CellPhone = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
-                    PasswordHash = table.Column<string>(type: "NVARCHAR(50)", maxLength: 50, nullable: false)
+                    PasswordHash = table.Column<string>(type: "NVARCHAR(150)", maxLength: 150, nullable: false)
                 },
                 constraints: table =>
                 {

@@ -36,6 +36,6 @@ public class UserMap : IEntityTypeConfiguration<User>
                .IsRequired()
                .HasColumnName("PasswordHash")
                .HasColumnType("NVARCHAR")
-               .HasMaxLength(50);
+               .HasMaxLength(150);
     }
 }
