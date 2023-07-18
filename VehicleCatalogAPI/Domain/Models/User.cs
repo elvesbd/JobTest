@@ -2,6 +2,9 @@ namespace VehicleCatalogAPI.Domain.Models;
 
 public class User
 {
+    public User()
+    { }
+
     public User(string name, string email, string cellPhone)
     {
         Name = name;
@@ -9,8 +12,8 @@ public class User
         CellPhone = cellPhone;
     }
 
-    public int Id { get; private set; } = 0;
-    public string Name { get; private set; }
-    public string Email { get; private set; }
-    public string CellPhone { get; private set; }
+    public int Id { get; set; } = 0;
+    public string? Name { get; set; }
+    public string? Email { get; set; }
+    public string? CellPhone { get; set; }
 }

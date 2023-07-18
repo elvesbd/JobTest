@@ -20,15 +20,10 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(x => x.Id == userId);
     }
 
-    public async Task<User> AddByAsync(User user)
+    public async Task<User> AddAsync(User user)
     {
         await _dbContext.AddAsync(user);
         await _dbContext.SaveChangesAsync();
         return user;
-    }
-
-    public Task<User?> GetByIdAsync(Guid userId)
-    {
-        throw new NotImplementedException();
     }
 }
