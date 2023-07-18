@@ -11,6 +11,11 @@ namespace VehicleCatalogAPI.Extensions;
 
 public static class AppExtensions
 {
+    public static void LoadConfiguration(this WebApplicationBuilder builder)
+    {
+        Configuration.JwtKey = builder.Configuration.GetValue<string>("JwtKey")!;
+    }
+
     public static void ConfigureAuthentication(this WebApplicationBuilder builder)
     {
         var key = Encoding.ASCII.GetBytes(Configuration.JwtKey);
