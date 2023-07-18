@@ -13,4 +13,8 @@ public class AddUserDto
 
     [Required(ErrorMessage = "CellPhone is required!")]
     public string CellPhone { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Password is required!")]
+    [StringLength(25, MinimumLength = 8, ErrorMessage = "Password must contain between 8 and 25 characters")]
+    public string Password { get; set; } = string.Empty;
 }
