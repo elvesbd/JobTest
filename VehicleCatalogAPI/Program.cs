@@ -1,21 +1,7 @@
-using Microsoft.EntityFrameworkCore;
-using VehicleCatalogAPI.Data;
-using VehicleCatalogAPI.Repositories;
-using VehicleCatalogAPI.Repositories.Interfaces;
+using VehicleCatalogAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddEntityFrameworkSqlServer()
-    .AddDbContext<VehicleCatalogDbContext>(
-        options => options.UseSqlServer(
-            builder.Configuration.GetConnectionString("DefaultConnection")
-        )
-    );
-
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.ConfigureMvc();
 
 var app = builder.Build();
 
