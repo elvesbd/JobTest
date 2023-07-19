@@ -29,7 +29,6 @@ public class VehicleRepository : IVehicleRepository
             .ToListAsync();
     }
 
-
     public async Task<Vehicle?> GetOneAsync(Guid id)
     {
         return await _dbContext.Vehicles
