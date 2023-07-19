@@ -5,5 +5,6 @@ namespace VehicleCatalogAPI.Repositories.Interfaces;
 public interface IVehicleRepository
 {
     Task<List<Vehicle>> GetAsync();
+    Task<List<Vehicle>> GetByUserIdAsync(Guid userId);
     Task<Vehicle> AddAsync(Vehicle vehicle);
 }

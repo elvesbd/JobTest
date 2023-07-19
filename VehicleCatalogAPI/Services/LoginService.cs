@@ -26,7 +26,7 @@ public class LoginService
         if (user is null)
             return new ResultDto<string>("Invalid credentials!");
 
-        var isPasswordValid = _passwordHasher.Verify(user.PasswordHash, dto.Password);
+        var isPasswordValid = _passwordHasher.Verify(user.PasswordHash!, dto.Password);
         if (!isPasswordValid)
             return new ResultDto<string>("Invalid credentials!");
 

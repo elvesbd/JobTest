@@ -2,7 +2,7 @@ namespace VehicleCatalogAPI.DTOs;
 
 public class ResultDto<T>
 {
-    public ResultDto(T data, List<string> errors)
+    public ResultDto(T data, List<string>? errors)
     {
         Data = data;
         Errors = errors;

@@ -21,6 +21,14 @@ public class VehicleRepository : IVehicleRepository
             .ToListAsync();
     }
 
+    public async Task<List<Vehicle>> GetByUserIdAsync(Guid userId)
+    {
+        return await _dbContext.Vehicles
+            .AsNoTracking()
+            .Where(vehicle => vehicle.UserId == userId)
+            .ToListAsync();
+    }
+
     public async Task<Vehicle> AddAsync(Vehicle vehicle)
     {
         await _dbContext.AddAsync(vehicle);

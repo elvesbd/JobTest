@@ -14,7 +14,7 @@ public class UserRepository : IUserRepository
     }
 
 
-    public async Task<User> GetByEmailAsync(string email)
+    public async Task<User?> GetByEmailAsync(string email)
     {
         return await _dbContext.Users
             .AsNoTracking()

@@ -21,15 +21,14 @@ public class VehicleController : ControllerBase
         _jwtTokenHandler = jwtTokenHandler;
     }
 
+    [AllowAnonymous]
     [HttpGet("v1/vehicles")]
-    public async Task<IActionResult> GetAsync([FromHeader(Name = "Authorization")] string token)
+    public async Task<IActionResult> GetAsync()
     {
         try
         {
-            var userId = await _jwtTokenHandler.ExtractUserIdFromToken(token);
-            Console.WriteLine(userId);
-            var vehicles = await _vehicleService.GetAsync(userId);
-            return Ok(new ResultDto<Vehicle>(vehicles));
+            var vehicles = await _vehicleService.GetAsync();
+            return Ok(new ResultDto<List<Vehicle>>(vehicles));
         }
         catch (Exception err)
         {
@@ -38,7 +37,22 @@ public class VehicleController : ControllerBase
         }
     }
 
-    //[AllowAnonymous]
+    [HttpGet("v1/vehicles/user")]
+    public async Task<IActionResult> GetByUserIdAsync([FromHeader(Name = "Authorization")] string token)
+    {
+        try
+        {
+            var userId = await _jwtTokenHandler.ExtractUserIdFromToken(token);
+            var vehicles = await _vehicleService.GetByUserIdAsync(userId);
+            return Ok(new ResultDto<List<Vehicle>>(vehicles, null));
+        }
+        catch (Exception err)
+        {
+            Console.WriteLine(err);
+            return StatusCode(500, new ResultDto<string>("Internal server error!"));
+        }
+    }
+
     [HttpPost("v1/vehicles")]
     public async Task<IActionResult> AddAsync([FromBody] AddVehicleDto dto)
     {
