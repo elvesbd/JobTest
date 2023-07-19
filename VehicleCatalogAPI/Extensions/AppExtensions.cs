@@ -62,8 +62,6 @@ public static class AppExtensions
                     builder.Configuration.GetConnectionString("DefaultConnection")
                 )
             );
-
-        builder.Services.AddScoped<IUserRepository, UserRepository>();
     }
 
     public static void ConfigureServices(this WebApplicationBuilder builder)
