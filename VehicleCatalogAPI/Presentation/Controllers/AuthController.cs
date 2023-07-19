@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using SecureIdentity.Password;
 using VehicleCatalogAPI.DTOs;
 using VehicleCatalogAPI.DTOs.User;
 using VehicleCatalogAPI.Extensions;
@@ -10,11 +9,11 @@ namespace VehicleCatalogAPI.Presentation.Controllers;
 [ApiController]
 public class AuthController : ControllerBase
 {
+    private readonly LoginService _loginService;
     private readonly UserService _userService;
-    private readonly TokenService _tokenService;
-    public AuthController(TokenService tokenService, UserService userService)
+    public AuthController(LoginService loginService, UserService userService)
     {
-        _tokenService = tokenService;
+        _loginService = loginService;
         _userService = userService;
     }
 
@@ -25,18 +24,10 @@ public class AuthController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new ResultDto<string>(ModelState.GetErrors()));
 
-        var user = await _userService.GetByEmailAsync(dto.Email);
-        if (user is null)
-            return StatusCode(401, new ResultDto<string>("Invalid credentials!"));
-
-        var isPasswordValid = PasswordHasher.Verify(user.PasswordHash, dto.Password);
-        if (!isPasswordValid)
-            return StatusCode(401, new ResultDto<string>("Invalid credentials!"));
-
         try
         {
-            var token = _tokenService.GenerateToken(user);
-            return Ok(new ResultDto<string>(token, null));
+            var token = await _loginService.LoginAsync(dto);
+            return Ok(token);
         }
         catch
         {

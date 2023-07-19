@@ -65,5 +65,6 @@ public static class AppExtensions
         builder.Services.AddTransient<IUserRepository, UserRepository>();
         builder.Services.AddTransient<UserService>();
         builder.Services.AddTransient<TokenService>();
+        builder.Services.AddTransient<LoginService>();
     }
 }
