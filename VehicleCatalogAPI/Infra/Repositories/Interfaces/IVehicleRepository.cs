@@ -8,4 +8,6 @@ public interface IVehicleRepository
     Task<List<Vehicle>> GetByUserIdAsync(Guid userId);
     Task<Vehicle?> GetOneAsync(Guid id);
     Task<Vehicle> AddAsync(Vehicle vehicle);
+    Task<Vehicle> UpdateAsync(Vehicle vehicle);
+    Task DeleteAsync(Vehicle vehicle);
 }

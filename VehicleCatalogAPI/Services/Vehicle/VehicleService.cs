@@ -27,7 +27,7 @@ public class VehicleService
         return await _repository.GetOneAsync(id);
     }
 
-    public async Task<Vehicle> AddAsync(AddVehicleDto dto, Guid userId)
+    public async Task<Vehicle> AddAsync(VehicleDto dto, Guid userId)
     {
         var vehicle = new Vehicle
         {
@@ -38,5 +38,15 @@ public class VehicleService
             UserId = userId
         };
         return await _repository.AddAsync(vehicle);
+    }
+
+    public async Task<Vehicle> UpdateAsync(Vehicle vehicle)
+    {
+        return await _repository.UpdateAsync(vehicle);
+    }
+
+    public async Task DeleteAsync(Vehicle vehicle)
+    {
+        await _repository.DeleteAsync(vehicle);
     }
 }

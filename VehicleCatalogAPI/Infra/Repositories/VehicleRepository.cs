@@ -43,4 +43,17 @@ public class VehicleRepository : IVehicleRepository
         await _dbContext.SaveChangesAsync();
         return vehicle;
     }
+
+    public async Task<Vehicle> UpdateAsync(Vehicle vehicle)
+    {
+        _dbContext.Vehicles.Update(vehicle);
+        await _dbContext.SaveChangesAsync();
+        return vehicle;
+    }
+
+    public async Task DeleteAsync(Vehicle vehicle)
+    {
+        _dbContext.Vehicles.Remove(vehicle);
+        await _dbContext.SaveChangesAsync();
+    }
 }
