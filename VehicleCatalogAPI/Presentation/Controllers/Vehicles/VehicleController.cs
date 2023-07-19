@@ -6,6 +6,7 @@ using VehicleCatalogAPI.Services;
 using VehicleCatalogAPI.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace VehicleCatalogAPI.Presentation.Controllers.Vehicles;
 
 [Authorize]
@@ -16,6 +17,22 @@ public class VehicleController : ControllerBase
     public VehicleController(VehicleService vehicleService)
     {
         _vehicleService = vehicleService;
+    }
+
+    [HttpGet("v1/vehicles")]
+    public async Task<IActionResult> GetAsync([FromHeader(Name = "Authorization")] string token)
+    {
+        try
+        {
+            Console.WriteLine(token);
+            var vehicles = await _vehicleService.GetAsync();
+            return Ok(new ResultDto<List<Vehicle>>(vehicles));
+        }
+        catch (Exception err)
+        {
+            Console.WriteLine(err);
+            return StatusCode(500, new ResultDto<string>("Internal server error!"));
+        }
     }
 
     //[AllowAnonymous]

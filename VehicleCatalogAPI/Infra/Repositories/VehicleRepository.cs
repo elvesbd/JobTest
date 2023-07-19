@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using VehicleCatalogAPI.Data;
 using VehicleCatalogAPI.Domain.Models;
 using VehicleCatalogAPI.Repositories.Interfaces;
@@ -10,6 +11,14 @@ public class VehicleRepository : IVehicleRepository
     public VehicleRepository(VehicleCatalogDbContext dbContext)
     {
         _dbContext = dbContext;
+    }
+
+
+    public async Task<List<Vehicle>> GetAsync()
+    {
+        return await _dbContext.Vehicles
+            .AsNoTracking()
+            .ToListAsync();
     }
 
     public async Task<Vehicle> AddAsync(Vehicle vehicle)
