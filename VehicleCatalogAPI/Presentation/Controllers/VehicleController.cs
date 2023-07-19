@@ -7,7 +7,7 @@ using VehicleCatalogAPI.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 
 
-namespace VehicleCatalogAPI.Presentation.Controllers.Vehicles;
+namespace VehicleCatalogAPI.Presentation.Controllers;
 
 [Authorize]
 [ApiController]
