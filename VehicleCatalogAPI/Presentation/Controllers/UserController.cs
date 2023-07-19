@@ -7,7 +7,6 @@ using VehicleCatalogAPI.Extensions;
 
 namespace VehicleCatalogAPI.Presentation.Controllers;
 
-//[Authorize]
 [ApiController]
 public class UserController : ControllerBase
 {
@@ -17,7 +16,6 @@ public class UserController : ControllerBase
         _userService = userService;
     }
 
-    //[AllowAnonymous]
     [HttpPost("v1/users")]
     public async Task<IActionResult> AddAsync([FromBody] AddUserDto dto)
     {
