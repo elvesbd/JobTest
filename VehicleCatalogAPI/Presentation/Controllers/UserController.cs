@@ -27,10 +27,11 @@ public class UserController : ControllerBase
                 return BadRequest(new ResultDto<string>(ModelState.GetErrors()));
 
             var user = await _userService.AddAsync(dto);
-            return Created($"v1/categories/{user.Id}", new ResultDto<User>(user));
+            return Created($"v1/users/{user.Id}", new ResultDto<User>(user));
         }
-        catch
+        catch (Exception err)
         {
+            Console.WriteLine(err);
             return StatusCode(500, new ResultDto<string>("Internal server error!"));
         }
     }

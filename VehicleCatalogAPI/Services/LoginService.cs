@@ -1,15 +1,21 @@
-using SecureIdentity.Password;
 using VehicleCatalogAPI.DTOs;
 using VehicleCatalogAPI.DTOs.User;
+using VehicleCatalogAPI.Infra.Adapters.Interfaces;
 
 namespace VehicleCatalogAPI.Services;
 
 public class LoginService
 {
+    private IPasswordHasher _passwordHasher;
     private readonly TokenService _tokenService;
     private readonly UserService _userService;
-    public LoginService(TokenService tokenService, UserService userService)
+    public LoginService(
+        IPasswordHasher passwordHasher,
+        TokenService tokenService,
+        UserService userService
+    )
     {
+        _passwordHasher = passwordHasher;
         _tokenService = tokenService;
         _userService = userService;
     }
@@ -20,7 +26,7 @@ public class LoginService
         if (user is null)
             return new ResultDto<string>("Invalid credentials!");
 
-        var isPasswordValid = PasswordHasher.Verify(user.PasswordHash, dto.Password);
+        var isPasswordValid = _passwordHasher.Verify(user.PasswordHash, dto.Password);
         if (!isPasswordValid)
             return new ResultDto<string>("Invalid credentials!");
 

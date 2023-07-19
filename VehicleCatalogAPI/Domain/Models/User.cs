@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace VehicleCatalogAPI.Domain.Models;
 
 public class User
@@ -18,5 +20,7 @@ public class User
     public string? Name { get; set; }
     public string? Email { get; set; }
     public string? CellPhone { get; set; }
+
+    [JsonIgnore]
     public string? PasswordHash { get; set; }
 }

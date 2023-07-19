@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using VehicleCatalogAPI.Data;
+using VehicleCatalogAPI.Infra.Adapters.Interfaces;
+using VehicleCatalogAPI.Infra.Adapters;
 using VehicleCatalogAPI.Repositories;
 using VehicleCatalogAPI.Repositories.Interfaces;
 using VehicleCatalogAPI.Services;
+using System.Text.Json.Serialization;
 
 namespace VehicleCatalogAPI.Extensions;
 
@@ -43,6 +46,11 @@ public static class AppExtensions
         .ConfigureApiBehaviorOptions(options =>
         {
             options.SuppressModelStateInvalidFilter = true;
+        })
+        .AddJsonOptions(x =>
+        {
+            x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
         });
 
         builder.Services.AddEndpointsApiExplorer();
@@ -63,6 +71,7 @@ public static class AppExtensions
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
         builder.Services.AddDbContext<VehicleCatalogDbContext>(options => options.UseSqlServer(connectionString));
         builder.Services.AddTransient<IUserRepository, UserRepository>();
+        builder.Services.AddTransient<IPasswordHasher, SecureIdentityAdapter>();
         builder.Services.AddTransient<UserService>();
         builder.Services.AddTransient<TokenService>();
         builder.Services.AddTransient<LoginService>();

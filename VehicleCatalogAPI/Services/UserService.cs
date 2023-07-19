@@ -1,15 +1,17 @@
-using SecureIdentity.Password;
 using VehicleCatalogAPI.Domain.Models;
 using VehicleCatalogAPI.DTOs.User;
+using VehicleCatalogAPI.Infra.Adapters.Interfaces;
 using VehicleCatalogAPI.Repositories.Interfaces;
 
 namespace VehicleCatalogAPI.Services;
 
 public class UserService
 {
+    private IPasswordHasher _passwordHasher;
     private IUserRepository _repository;
-    public UserService(IUserRepository repository)
+    public UserService(IPasswordHasher passwordHasher, IUserRepository repository)
     {
+        _passwordHasher = passwordHasher;
         _repository = repository;
     }
 
@@ -26,7 +28,7 @@ public class UserService
             Email = dto.Email,
             CellPhone = dto.CellPhone,
         };
-        var passwordHash = PasswordHasher.Hash(dto.Password);
+        var passwordHash = _passwordHasher.Hash(dto.Password);
         user.PasswordHash = passwordHash;
         return await _repository.AddAsync(user);
     }
