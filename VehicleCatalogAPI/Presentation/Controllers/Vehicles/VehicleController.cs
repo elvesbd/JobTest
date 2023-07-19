@@ -26,7 +26,7 @@ public class VehicleController : ControllerBase
             if (!ModelState.IsValid)
                 return BadRequest(new ResultDto<string>(ModelState.GetErrors()));
 
-            var vehicle = await _vehicleService.AddAsync(dto, Guid.Empty);
+            var vehicle = await _vehicleService.AddAsync(dto, new Guid());
             return Created($"v1/vehicles/{vehicle.Id}", new ResultDto<Vehicle>(vehicle));
         }
         catch (Exception err)
