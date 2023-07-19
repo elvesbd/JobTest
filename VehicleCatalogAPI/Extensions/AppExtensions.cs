@@ -70,10 +70,12 @@ public static class AppExtensions
     {
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
         builder.Services.AddDbContext<VehicleCatalogDbContext>(options => options.UseSqlServer(connectionString));
-        builder.Services.AddTransient<IUserRepository, UserRepository>();
-        builder.Services.AddTransient<IPasswordHasher, SecureIdentityAdapter>();
-        builder.Services.AddTransient<UserService>();
-        builder.Services.AddTransient<TokenService>();
-        builder.Services.AddTransient<LoginService>();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+        builder.Services.AddScoped<IPasswordHasher, SecureIdentityAdapter>();
+        builder.Services.AddScoped<UserService>();
+        builder.Services.AddScoped<TokenService>();
+        builder.Services.AddScoped<LoginService>();
+        builder.Services.AddScoped<VehicleService>();
     }
 }

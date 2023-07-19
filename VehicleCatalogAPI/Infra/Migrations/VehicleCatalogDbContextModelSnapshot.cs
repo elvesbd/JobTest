@@ -86,9 +86,30 @@ namespace VehicleCatalogAPI.Migrations
                         .HasColumnType("VARCHAR")
                         .HasColumnName("Name");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Vehicle", (string)null);
+                });
+
+            modelBuilder.Entity("VehicleCatalogAPI.Domain.Models.Vehicle", b =>
+                {
+                    b.HasOne("VehicleCatalogAPI.Domain.Models.User", "User")
+                        .WithMany("Vehicles")
+                        .HasForeignKey("UserId")
+                        .IsRequired()
+                        .HasConstraintName("FK_Vehicle_User");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("VehicleCatalogAPI.Domain.Models.User", b =>
+                {
+                    b.Navigation("Vehicles");
                 });
 #pragma warning restore 612, 618
         }
