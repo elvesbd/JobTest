@@ -29,6 +29,14 @@ public class VehicleRepository : IVehicleRepository
             .ToListAsync();
     }
 
+
+    public async Task<Vehicle?> GetOneAsync(Guid id)
+    {
+        return await _dbContext.Vehicles
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Id == id);
+    }
+
     public async Task<Vehicle> AddAsync(Vehicle vehicle)
     {
         await _dbContext.AddAsync(vehicle);

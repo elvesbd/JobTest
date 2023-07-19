@@ -22,6 +22,11 @@ public class VehicleService
         return await _repository.GetByUserIdAsync(userId);
     }
 
+    public async Task<Vehicle?> GetOneAsync(Guid id)
+    {
+        return await _repository.GetOneAsync(id);
+    }
+
     public async Task<Vehicle> AddAsync(AddVehicleDto dto, Guid userId)
     {
         var vehicle = new Vehicle

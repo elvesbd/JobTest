@@ -53,6 +53,21 @@ public class VehicleController : ControllerBase
         }
     }
 
+    [HttpGet("v1/vehicles/{id:guid}")]
+    public async Task<IActionResult> GetOneAsync([FromRoute] Guid id)
+    {
+        try
+        {
+            var vehicle = await _vehicleService.GetOneAsync(id);
+            return Ok(new ResultDto<Vehicle?>(vehicle, null));
+        }
+        catch (Exception err)
+        {
+            Console.WriteLine(err);
+            return StatusCode(500, new ResultDto<string>("Internal server error!"));
+        }
+    }
+
     [HttpPost("v1/vehicles")]
     public async Task<IActionResult> AddAsync([FromBody] AddVehicleDto dto)
     {
