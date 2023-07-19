@@ -9,6 +9,7 @@ using VehicleCatalogAPI.Repositories;
 using VehicleCatalogAPI.Repositories.Interfaces;
 using VehicleCatalogAPI.Services;
 using System.Text.Json.Serialization;
+using Microsoft.OpenApi.Models;
 
 namespace VehicleCatalogAPI.Extensions;
 
@@ -54,7 +55,33 @@ public static class AppExtensions
         });
 
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(x =>
+        {
+            x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer"
+            });
+            x.AddSecurityRequirement(new OpenApiSecurityRequirement()
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        },
+                        Scheme = "oauth2",
+                        Name = "Bearer",
+                        In = ParameterLocation.Header
+                    },
+                    new List<string>()
+                }
+            });
+        });
 
         builder.Services.AddEntityFrameworkSqlServer()
             .AddDbContext<VehicleCatalogDbContext>(
