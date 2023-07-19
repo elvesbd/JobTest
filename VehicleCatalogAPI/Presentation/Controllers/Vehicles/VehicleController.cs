@@ -4,10 +4,11 @@ using VehicleCatalogAPI.Extensions;
 using VehicleCatalogAPI.DTOs.User;
 using VehicleCatalogAPI.Services;
 using VehicleCatalogAPI.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VehicleCatalogAPI.Presentation.Controllers.Vehicles;
 
-//[Authorize]
+[Authorize]
 [ApiController]
 public class VehicleController : ControllerBase
 {
