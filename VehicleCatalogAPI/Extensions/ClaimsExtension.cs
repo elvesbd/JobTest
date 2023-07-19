@@ -10,7 +10,7 @@ public static class ClaimsExtension
         var Id = user.Id.ToString();
         var result = new List<Claim>
         {
-            new(ClaimTypes.Name, Id)
+            new("UserId", Id)
         };
         return result;
     }
