@@ -102,5 +102,6 @@ public static class AppExtensions
         builder.Services.AddScoped<TokenService>();
         builder.Services.AddScoped<LoginService>();
         builder.Services.AddScoped<VehicleService>();
+        builder.Services.AddScoped<JwtTokenHandler>();
     }
 }

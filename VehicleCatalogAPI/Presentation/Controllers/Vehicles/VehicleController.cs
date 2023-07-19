@@ -13,10 +13,12 @@ namespace VehicleCatalogAPI.Presentation.Controllers.Vehicles;
 [ApiController]
 public class VehicleController : ControllerBase
 {
+    private readonly JwtTokenHandler _jwtTokenHandler;
     private readonly VehicleService _vehicleService;
-    public VehicleController(VehicleService vehicleService)
+    public VehicleController(JwtTokenHandler jwtTokenHandler, VehicleService vehicleService)
     {
         _vehicleService = vehicleService;
+        _jwtTokenHandler = jwtTokenHandler;
     }
 
     [HttpGet("v1/vehicles")]
@@ -24,9 +26,10 @@ public class VehicleController : ControllerBase
     {
         try
         {
-            Console.WriteLine(token);
-            var vehicles = await _vehicleService.GetAsync();
-            return Ok(new ResultDto<List<Vehicle>>(vehicles));
+            var userId = await _jwtTokenHandler.ExtractUserIdFromToken(token);
+            Console.WriteLine(userId);
+            var vehicles = await _vehicleService.GetAsync(userId);
+            return Ok(new ResultDto<Vehicle>(vehicles));
         }
         catch (Exception err)
         {
@@ -44,7 +47,7 @@ public class VehicleController : ControllerBase
             if (!ModelState.IsValid)
                 return BadRequest(new ResultDto<string>(ModelState.GetErrors()));
 
-            var vehicle = await _vehicleService.AddAsync(dto, new Guid("a4652923-4d6c-4c7a-644d-08db8861f97c"));
+            var vehicle = await _vehicleService.AddAsync(dto, new Guid("98adaa47-74b9-4119-91b2-08db88760e0a"));
             return Created($"v1/vehicles/{vehicle.Id}", new ResultDto<Vehicle>(vehicle));
         }
         catch (Exception err)
