@@ -36,5 +36,11 @@ public class VehicleMap : IEntityTypeConfiguration<Vehicle>
             .HasColumnName("Image")
             .HasColumnType("VARCHAR")
             .HasMaxLength(2000);
+
+        builder.HasOne(x => x.User)
+            .WithMany(x => x.Vehicles)
+            .HasForeignKey(x => x.UserId)
+            .HasConstraintName("FK_Vehicle_User")
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

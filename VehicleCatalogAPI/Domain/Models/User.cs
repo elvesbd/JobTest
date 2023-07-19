@@ -20,6 +20,7 @@ public class User
     public string? Name { get; set; }
     public string? Email { get; set; }
     public string? CellPhone { get; set; }
+    public List<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 
     [JsonIgnore]
     public string? PasswordHash { get; set; }
