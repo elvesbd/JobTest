@@ -1,12 +1,12 @@
+import SearchInput from "../components/SearchInput";
 import Header from "../components/Header";
 import { HomeContainer } from "../styles/pages/home";
 import Vehicle from "../components/Vehicle";
 import car1 from '../assets/car1.jpg'
 import car2 from '../assets/car2.jpg'
 import car3 from '../assets/car3.jpg'
-import SearchInput from "../components/SearchInput";
 
-export default function Home() {
+export default function Home({}) {
   return (
     <>
       <Header name="Cadastre-se"/>

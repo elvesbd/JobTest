@@ -6,9 +6,7 @@ globalStyles()
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Container>
-      <Component {...pageProps} />
-    </Container>
+    <Component {...pageProps} />
   )
 }
 

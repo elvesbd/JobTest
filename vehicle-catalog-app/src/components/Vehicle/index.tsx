@@ -1,7 +1,14 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { ContainerVehicle } from "./styles";
 
-export default function Vehicle({ image, name, brand, model }) {
+interface VehicleProps {
+  image: StaticImageData;
+  name: string;
+  brand: string;
+  model: string;
+}
+
+export default function Vehicle({ image, name, brand, model }: VehicleProps) {
   return (
     <ContainerVehicle>
       <Image
