@@ -4,28 +4,13 @@ import Link from "next/link";
 import { useRouter } from 'next/router';
 import { setCookie } from 'cookies-next';
 
+import api from "../../services/api";
 import LoginCard from "../../components/LoginCard";
 import Input from "../../components/InputCard";
 import Button from "../../components/Button";
 import bannerImage from '../../assets/banner.jpg';
 import { LoginContainer, LoginFormContainer } from "../../styles/pages/login";
-import api from "../../services/api";
-
-interface LoginProps {
-  email: string;
-  password: string;
-}
-
-interface LoginResponseProps {
-  data: string;
-}
-
-interface ErrorsProps {
-  errors: string[];
-}
-
-type EventProps = React.ChangeEvent<HTMLInputElement>
-type FormEventProps =  React.FormEvent<HTMLFormElement>
+import { LoginProps, FormEventProps, LoginResponseProps, EventProps } from "./interfaces";
 
 export default function Login() {
   const [loginData, setLoginData] = useState<LoginProps>({email: '', password: ''})

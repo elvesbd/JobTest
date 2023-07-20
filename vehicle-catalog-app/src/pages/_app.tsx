@@ -1,6 +1,5 @@
 import { AppProps } from "next/app"
 import { globalStyles } from "../styles/global"
-import { Container } from "../styles/pages/app"
 
 globalStyles()
 

@@ -3,22 +3,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from 'next/router';
 
+import api from "../../services/api";
 import RegisterCard from "../../components/RegisterCard";
 import Input from "../../components/InputCard";
 import Button from "../../components/Button";
 import bannerImage from '../../assets/banner.jpg'
+import { UserProps, FormEventProps, EventProps } from "./interfaces";
 import { RegisterContainer, RegisterFormContainer } from "../../styles/pages/register";
-import api from "../../services/api";
-
-interface UserProps {
-  name: string;
-  email: string;
-  cellPhone: string;
-  password: string;
-}
-
-type EventProps = React.ChangeEvent<HTMLInputElement>
-type FormEventProps =  React.FormEvent<HTMLFormElement>
 
 export default function Register() {
   const [user, setUser] = useState<UserProps>({
