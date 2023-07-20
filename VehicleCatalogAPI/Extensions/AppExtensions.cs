@@ -89,6 +89,16 @@ public static class AppExtensions
                     builder.Configuration.GetConnectionString("DefaultConnection")
                 )
             );
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(x =>
+            {
+                x.WithOrigins("http://localhost:3000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
     }
 
     public static void ConfigureServices(this WebApplicationBuilder builder)
