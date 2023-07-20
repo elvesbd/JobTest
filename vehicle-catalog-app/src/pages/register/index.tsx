@@ -4,6 +4,7 @@ import RegisterCard from "../../components/RegisterCard";
 import bannerImage from '../../assets/banner.jpg'
 import Input from "../../components/InputCard";
 import Button from "../../components/Button";
+import Link from "next/link";
 
 export default function Register() {
   return (
@@ -18,6 +19,7 @@ export default function Register() {
             <Input type="number" placeholder="Telefone com DDD"/>
             <Input type="Text" placeholder="Senha"/>
             <Button>Cadastrar</Button>
+            <Link href="/login">Já possui conta? Clique aqui</Link>
           </form>
         </RegisterCard>
       </RegisterFormContainer>

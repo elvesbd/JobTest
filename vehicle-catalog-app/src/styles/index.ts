@@ -19,6 +19,7 @@ export const {
       gray500: '#333333',
       gray400: '#898989',
       gray300: '#c4c4cc',
+      gray200: '#e7e7e7',
       gray100: '#e1e1e6',
 
       green600: '#087F5B',
@@ -26,6 +27,7 @@ export const {
       green300: '#00b37e',
     },
     fontSizes: {
+      s: '0.8rem',
       sm: '1rem',
       md: '1.125rem',
       lg: '1.25rem',

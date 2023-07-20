@@ -25,5 +25,11 @@ export const RegisterFormContainer = styled('div', {
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
+  },
+
+
+  a: {
+    textDecoration: 'none',
+    fontSize: '$s'
   }
 })

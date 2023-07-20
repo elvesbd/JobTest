@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import LoginCard from "../../components/LoginCard";
-import { LoginContainer, LoginFormContainer } from "../../styles/pages/login";
-import bannerImage from '../../assets/banner.jpg'
+import bannerImage from '../../assets/banner.jpg';
 import Input from "../../components/InputCard";
 import Button from "../../components/Button";
+import { LoginContainer, LoginFormContainer } from "../../styles/pages/login";
 
 
 export default function Login() {
@@ -17,6 +18,7 @@ export default function Login() {
            <Input type="email" placeholder="E-mail"/>
            <Input type="password" placeholder="Senha"/>
            <Button>Login</Button>
+           <Link href="/register">Ainda não possui conta? Clique aqui</Link>
          </form>
        </LoginCard>
      </LoginFormContainer>
