@@ -4,12 +4,15 @@ import Header from '../../components/Header';
 import { useEffect, useMemo, useState } from 'react';
 import Vehicle from '../../components/Vehicle';
 import car1 from '../../assets/car1.jpg'
+import car2 from '../../assets/car2.jpg'
+import car3 from '../../assets/car3.jpg'
 import api from '../../services/api';
 import Main from '../../components/Main';
 import { useRouter } from 'next/router';
 import { InputCard } from '../../components/InputCard/styles';
 import SearchInput from '../../components/SearchInput';
 import ConsoleAdmin from '../../components/ConsoleAdmin';
+import { AdminContainer, MainAdminContainer } from '../../styles/pages/admin';
 
 interface VehicleProps {
   id: string;
@@ -61,21 +64,46 @@ export default function Admin({ token }: TokenProps) {
     }, [config])
 
   return (
-    <Main>
+    <AdminContainer>
       <Header>
         <button onClick={handleDeleteCookie}>Sair</button>
       </Header>
-      <ConsoleAdmin />
-      { vehicles.map((vehicle) => (
-          <Vehicle
-            key={vehicle.id}
-            image={car1}
-            name={vehicle.name}
-            brand={vehicle.brand}
-            model={vehicle.model}
-          />
-        )) }
-    </Main> 
+        <div>
+          <ConsoleAdmin />
+          <MainAdminContainer>
+            { vehicles.map((vehicle) => (
+                <Vehicle
+                  key={vehicle.id}
+                  image={car1}
+                  name={vehicle.name}
+                  brand={vehicle.brand}
+                  model={vehicle.model}
+                />
+              )) }
+              <Vehicle
+                key=""
+                image={car1}
+                name=""
+                brand=""
+                model=""
+              />
+              <Vehicle
+                key=""
+                image={car2}
+                name=""
+                brand=""
+                model=""
+              />
+              <Vehicle
+                key=""
+                image={car3}
+                name=""
+                brand=""
+                model=""
+              />
+          </MainAdminContainer>
+        </div>
+    </AdminContainer>
   )
 }
 

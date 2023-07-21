@@ -3,8 +3,10 @@ import { styled } from "../../styles";
 export const ConsoleAdminContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  margin: '2rem 0 0 1rem',
 
   h1: {
+    fontSize: '$xl',
     color: '$gray800'
   }
 })
@@ -21,7 +23,7 @@ export const ButtonContainer = styled('div', {
     border: 'none',
     cursor: 'pointer',
     color: '$green600',
-    fontSize: '$md',
+    fontSize: '$sm',
     transition: 'ease-in 0.1s',
   
     '&:hover': {

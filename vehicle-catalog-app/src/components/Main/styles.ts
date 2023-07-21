@@ -6,7 +6,7 @@ export const MainContainer = styled('main', {
   alignItems: 'flex-start',
   gap: '1rem',
 
-  padding: '2rem 0',
+  padding: '2rem',
   width: '100%',
   maxWidth: 1260,
   margin: '0 auto'
