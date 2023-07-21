@@ -1,6 +1,6 @@
-import { styled } from "..";
+import { styled } from "../../styles";
 
-export const HomeContainer = styled('main', {
+export const MainContainer = styled('main', {
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'flex-start',

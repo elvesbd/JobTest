@@ -31,11 +31,11 @@ export const RegisterFormContainer = styled('div', {
   a: {
     textDecoration: 'none',
     fontSize: '$s',
-    color: '$blue',
+    color: '$blue200',
     transition: 'ease-in 0.1s',
 
     '&:hover': {
-      color: '$blue200'
+      color: '$blue100'
     }
   }
 })

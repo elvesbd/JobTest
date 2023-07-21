@@ -11,7 +11,9 @@ export const ContainerHeader = styled('header', {
   maxWidth: 1260,
   margin: '0 auto',
 
-  a: {
+  button: {
+    background: 'none',
+    border: 'none',
     textDecoration: 'none',
     cursor: 'pointer',
     color: '$gray500',
@@ -21,7 +23,24 @@ export const ContainerHeader = styled('header', {
       color: '$gray400'
     }
   },
-})
 
+  div: {
+    display: 'flex',
+    gap: '1rem',
+
+    /* button: {
+      background: 'none',
+      border: 'none',
+      textDecoration: 'none',
+      cursor: 'pointer',
+      color: '$gray500',
+      transition: 'ease-in 0.1s',
+  
+      '&:hover': {
+        color: '$gray400'
+      }
+    } */
+  }
+})
 
   
