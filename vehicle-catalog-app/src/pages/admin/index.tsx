@@ -74,33 +74,12 @@ export default function Admin({ token }: TokenProps) {
             { vehicles.map((vehicle) => (
                 <Vehicle
                   key={vehicle.id}
-                  image={car1}
+                  image={car2}
                   name={vehicle.name}
                   brand={vehicle.brand}
                   model={vehicle.model}
                 />
               )) }
-              <Vehicle
-                key=""
-                image={car1}
-                name=""
-                brand=""
-                model=""
-              />
-              <Vehicle
-                key=""
-                image={car2}
-                name=""
-                brand=""
-                model=""
-              />
-              <Vehicle
-                key=""
-                image={car3}
-                name=""
-                brand=""
-                model=""
-              />
           </MainAdminContainer>
         </div>
     </AdminContainer>

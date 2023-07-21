@@ -9,7 +9,6 @@ import car3 from '../assets/car3.jpg'
 import Main from "../components/Main";
 import { deleteCookie, getCookie } from "cookies-next";
 import { GetServerSideProps } from "next";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 interface VehicleProps {
@@ -78,7 +77,7 @@ export default function Home() {
       </Header>
       <SearchInput />
       <Main>
-        { vehicles.map((vehicle) => (
+        {/* { vehicles.map((vehicle) => (
           <Vehicle
           key={vehicle.id}
           image={car1}
@@ -107,7 +106,7 @@ export default function Home() {
           name=""
           brand=""
           model=""
-        />
+        /> */}
       </Main>
     </>
   )
