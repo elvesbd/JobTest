@@ -7,6 +7,9 @@ import car1 from '../../assets/car1.jpg'
 import api from '../../services/api';
 import Main from '../../components/Main';
 import { useRouter } from 'next/router';
+import { InputCard } from '../../components/InputCard/styles';
+import SearchInput from '../../components/SearchInput';
+import ConsoleAdmin from '../../components/ConsoleAdmin';
 
 interface VehicleProps {
   id: string;
@@ -62,6 +65,7 @@ export default function Admin({ token }: TokenProps) {
       <Header>
         <button onClick={handleDeleteCookie}>Sair</button>
       </Header>
+      <ConsoleAdmin />
       { vehicles.map((vehicle) => (
           <Vehicle
             key={vehicle.id}

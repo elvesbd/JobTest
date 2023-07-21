@@ -27,19 +27,6 @@ export const ContainerHeader = styled('header', {
   div: {
     display: 'flex',
     gap: '1rem',
-
-    /* button: {
-      background: 'none',
-      border: 'none',
-      textDecoration: 'none',
-      cursor: 'pointer',
-      color: '$gray500',
-      transition: 'ease-in 0.1s',
-  
-      '&:hover': {
-        color: '$gray400'
-      }
-    } */
   }
 })
 

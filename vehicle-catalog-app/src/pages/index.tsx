@@ -56,12 +56,19 @@ export default function Home() {
   const handleLogin = () => {
     router.push('/login')
   }
+
+  const handleAdmin = () => {
+    router.push('/admin')
+  }
   
   return (
     <>
       <Header>
       {token ? (
-        <button onClick={handleDeleteCookie}>Sair</button>
+        <div>
+          <button onClick={handleAdmin}>Admin</button>
+          <button onClick={handleDeleteCookie}>Sair</button>
+        </div>
       ) : (
         <div>
           <button onClick={handleRegister}>Cadastre-se</button>
