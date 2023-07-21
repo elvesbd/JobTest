@@ -7,4 +7,9 @@ export const ButtonCard = styled('button', {
   borderRadius: 6,
   cursor: 'pointer',
   color: '$white',
+  transition: 'ease-in 0.1s',
+
+  '&:hover': {
+    backgroundColor: '$green500'
+  }
 })

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { setCookie } from 'cookies-next';
 
 import api from "../../services/api";
-import LoginCard from "../../components/LoginCard";
+import Card from "../../components/Card";
 import Input from "../../components/InputCard";
 import Button from "../../components/Button";
 import bannerImage from '../../assets/banner.jpg';
@@ -43,7 +43,7 @@ export default function Login() {
      <Image src={bannerImage} alt="Banner" />
      
      <LoginFormContainer>
-       <LoginCard title="Realizar login">
+       <Card title="Login">
          <form onSubmit={handleSubmit} action="">
            <Input
             type="email"
@@ -62,7 +62,7 @@ export default function Login() {
             <Button>Login</Button>
             <Link href="/register">Ainda não possui conta? Clique aqui</Link>
          </form>
-       </LoginCard>
+       </Card>
      </LoginFormContainer>
     </LoginContainer>
   )

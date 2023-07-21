@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from 'next/router';
 
 import api from "../../services/api";
-import RegisterCard from "../../components/RegisterCard";
+import Card from "../../components/Card";
 import Input from "../../components/InputCard";
 import Button from "../../components/Button";
 import bannerImage from '../../assets/banner.jpg'
@@ -51,7 +51,7 @@ export default function Register() {
       <Image src={bannerImage} alt="Banner" />
      
       <RegisterFormContainer>
-        <RegisterCard title="Realizar cadastro">
+        <Card title="Realizar cadastro">
           <form onSubmit={handleSubmit} action="">
             <Input
               type="text"
@@ -84,7 +84,7 @@ export default function Register() {
             <Button>Cadastrar</Button>
             <Link href="/login">Já possui conta? Clique aqui</Link>
           </form>
-        </RegisterCard>
+        </Card>
       </RegisterFormContainer>
     </RegisterContainer>
   )

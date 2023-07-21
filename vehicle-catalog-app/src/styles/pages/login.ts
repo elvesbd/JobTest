@@ -29,6 +29,12 @@ export const LoginFormContainer = styled('div', {
 
   a: {
     textDecoration: 'none',
-    fontSize: '$s'
+    fontSize: '$s',
+    color: '$blue100',
+    transition: 'ease-in 0.1s',
+
+    '&:hover': {
+      color: '$blue200'
+    }
   }
 })

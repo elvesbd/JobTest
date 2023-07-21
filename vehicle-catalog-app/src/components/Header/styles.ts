@@ -10,5 +10,18 @@ export const ContainerHeader = styled('header', {
   width: '100%',
   maxWidth: 1260,
   margin: '0 auto',
-  color: '$gray500'
+
+  a: {
+    textDecoration: 'none',
+    cursor: 'pointer',
+    color: '$gray500',
+    transition: 'ease-in 0.1s',
+
+    '&:hover': {
+      color: '$gray400'
+    }
+  },
 })
+
+
+  

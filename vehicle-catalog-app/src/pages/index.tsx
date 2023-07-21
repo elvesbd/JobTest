@@ -21,7 +21,7 @@ interface VehicleData {
 export default function Home() {
   const [vehicles, setVehicles] = useState<VehicleProps[]>([])
  
-    useEffect(() => {
+   /*  useEffect(() => {
       const getVehiclesData = async () => {
         try {
           const response = await api.get<VehicleData>('vehicles');
@@ -30,16 +30,16 @@ export default function Home() {
           if (response.status !== 200) throw new Error()
     
         } catch (error) {
-          alert(error.response.data.errors)
+          alert(error.response?.data.errors)
         }
       }
       getVehiclesData()
-    }, [])
+    }, []) */
   
 
   return (
     <>
-      <Header name="Cadastre-se"/>
+      <Header name="Cadastre-se" redirect="/register"/>
       <SearchInput />
       <HomeContainer>
         { vehicles.map((vehicle) => (

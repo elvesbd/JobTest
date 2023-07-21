@@ -25,6 +25,9 @@ export const {
       green600: '#087F5B',
       green500: '#00875f',
       green300: '#00b37e',
+
+      blue200: '#3374db',
+      blue100: '#6697e4',
     },
     fontSizes: {
       s: '0.8rem',
