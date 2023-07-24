@@ -1,5 +1,6 @@
 using VehicleCatalogAPI.Domain.Models;
 using VehicleCatalogAPI.DTOs.User;
+using VehicleCatalogAPI.Exceptions;
 using VehicleCatalogAPI.Models.Repositories;
 
 namespace VehicleCatalogAPI.Services;
@@ -40,13 +41,27 @@ public class VehicleService
         return await _repository.AddAsync(vehicle);
     }
 
-    public async Task<Vehicle> UpdateAsync(Vehicle vehicle)
+    public async Task<Vehicle?> UpdateAsync(VehicleDto dto, Guid id)
     {
+        var vehicle = await _repository.GetOneAsync(id);
+        if (vehicle == null)
+            throw new VehicleNotFoundException();
+
+        vehicle.SetProperties(
+            dto.Name,
+            dto.Brand,
+            dto.Model,
+            dto.Image
+        );
         return await _repository.UpdateAsync(vehicle);
     }
 
-    public async Task DeleteAsync(Vehicle vehicle)
+    public async Task DeleteAsync(Guid id)
     {
+        var vehicle = await _repository.GetOneAsync(id);
+        if (vehicle == null)
+            throw new VehicleNotFoundException();
+
         await _repository.DeleteAsync(vehicle);
     }
 }

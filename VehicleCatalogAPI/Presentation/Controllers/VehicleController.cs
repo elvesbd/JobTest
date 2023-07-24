@@ -5,7 +5,7 @@ using VehicleCatalogAPI.DTOs.User;
 using VehicleCatalogAPI.Services;
 using VehicleCatalogAPI.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
-
+using VehicleCatalogAPI.Exceptions;
 
 namespace VehicleCatalogAPI.Presentation.Controllers;
 
@@ -90,21 +90,14 @@ public class VehicleController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new ResultDto<string>(ModelState.GetErrors()));
 
-        var vehicle = await _vehicleService.GetOneAsync(id);
-        if (vehicle == null)
-            return NotFound(new ResultDto<Vehicle>("Vehicle not found!"));
-
-        vehicle.SetProperties(
-            dto.Name,
-            dto.Brand,
-            dto.Model,
-            dto.Image
-        );
-
         try
         {
-            var newVehicle = await _vehicleService.UpdateAsync(vehicle);
+            var newVehicle = await _vehicleService.UpdateAsync(dto, id);
             return Ok(new ResultDto<Vehicle?>(newVehicle, null));
+        }
+        catch (VehicleNotFoundException ex)
+        {
+            return StatusCode(404, new ResultDto<string>(ex.Message));
         }
         catch (Exception)
         {
@@ -115,20 +108,18 @@ public class VehicleController : ControllerBase
     [HttpDelete("v1/vehicles/{id:guid}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
     {
-        var vehicle = await _vehicleService.GetOneAsync(id);
-        if (vehicle == null)
-            return NotFound(new ResultDto<Vehicle>("Vehicle not found!"));
-
         try
         {
-            await _vehicleService.DeleteAsync(vehicle);
+            await _vehicleService.DeleteAsync(id);
             return NoContent();
+        }
+        catch (VehicleNotFoundException ex)
+        {
+            return StatusCode(404, new ResultDto<string>(ex.Message));
         }
         catch (Exception)
         {
             return StatusCode(500, new ResultDto<string>("Internal server error!"));
         }
-
-
     }
 }
