@@ -27,9 +27,8 @@ public class UserController : ControllerBase
             var user = await _userService.AddAsync(dto);
             return Created($"v1/users/{user.Id}", new ResultDto<User>(user));
         }
-        catch (Exception err)
+        catch (Exception)
         {
-            Console.WriteLine(err);
             return StatusCode(500, new ResultDto<string>("Internal server error!"));
         }
     }

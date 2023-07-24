@@ -108,6 +108,7 @@ public static class AppExtensions
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
         builder.Services.AddScoped<IPasswordHasher, SecureIdentityAdapter>();
+        builder.Services.AddScoped<ITokenGenerator, TokenGeneratorAdapter>();
         builder.Services.AddScoped<UserService>();
         builder.Services.AddScoped<TokenService>();
         builder.Services.AddScoped<LoginService>();

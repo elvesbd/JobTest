@@ -30,9 +30,8 @@ public class VehicleController : ControllerBase
             var vehicles = await _vehicleService.GetAsync();
             return Ok(new ResultDto<List<Vehicle>>(vehicles));
         }
-        catch (Exception err)
+        catch (Exception)
         {
-            Console.WriteLine(err);
             return StatusCode(500, new ResultDto<string>("Internal server error!"));
         }
     }
