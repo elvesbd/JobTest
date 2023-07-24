@@ -94,10 +94,12 @@ public class VehicleController : ControllerBase
         if (vehicle == null)
             return NotFound(new ResultDto<Vehicle>("Vehicle not found!"));
 
-        vehicle.Name = dto.Name;
-        vehicle.Brand = dto.Brand;
-        vehicle.Model = dto.Model;
-        vehicle.Image = dto.Image;
+        vehicle.SetProperties(
+            dto.Name,
+            dto.Brand,
+            dto.Model,
+            dto.Image
+        );
 
         try
         {
