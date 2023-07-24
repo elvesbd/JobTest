@@ -22,14 +22,14 @@ public class UserService
 
     public async Task<User> AddAsync(AddUserDto dto)
     {
-        var user = new User
-        {
-            Name = dto.Name,
-            Email = dto.Email,
-            CellPhone = dto.CellPhone,
-        };
         var passwordHash = _passwordHasher.Hash(dto.Password);
-        user.PasswordHash = passwordHash;
+        var user = new User
+        (
+            dto.Name,
+            dto.Email,
+            dto.CellPhone,
+            passwordHash
+        );
         return await _repository.AddAsync(user);
     }
 }

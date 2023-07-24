@@ -30,13 +30,13 @@ public class VehicleService
     public async Task<Vehicle> AddAsync(VehicleDto dto, Guid userId)
     {
         var vehicle = new Vehicle
-        {
-            Name = dto.Name,
-            Brand = dto.Brand,
-            Model = dto.Model,
-            Image = dto.Image,
-            UserId = userId
-        };
+        (
+            dto.Name,
+            dto.Brand,
+            dto.Model,
+            dto.Image,
+            userId
+        );
         return await _repository.AddAsync(vehicle);
     }
 

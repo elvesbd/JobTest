@@ -1,25 +1,21 @@
 using System.Text.Json.Serialization;
+using Store.Domain.Models;
 
 namespace VehicleCatalogAPI.Domain.Models;
 
-public class User
+public class User : Entity
 {
-    public User()
-    { }
-
     public User(string name, string email, string cellPhone, string passwordHash)
     {
-        Id = Guid.NewGuid();
         Name = name;
         Email = email;
         CellPhone = cellPhone;
         PasswordHash = passwordHash;
     }
 
-    public Guid Id { get; set; }
-    public string? Name { get; set; }
-    public string? Email { get; set; }
-    public string? CellPhone { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+    public string CellPhone { get; set; }
     public List<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 
     [JsonIgnore]
