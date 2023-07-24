@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using VehicleCatalogAPI.Data;
 using VehicleCatalogAPI.Domain.Models;
-using VehicleCatalogAPI.Repositories.Interfaces;
+using VehicleCatalogAPI.Models.Repositories;
 
 namespace VehicleCatalogAPI.Repositories;
 

@@ -1,6 +1,6 @@
 using VehicleCatalogAPI.Domain.Models;
 
-namespace VehicleCatalogAPI.Repositories.Interfaces;
+namespace VehicleCatalogAPI.Models.Repositories;
 
 public interface IVehicleRepository
 {

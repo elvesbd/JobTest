@@ -1,7 +1,7 @@
 using VehicleCatalogAPI.Domain.Models;
 using VehicleCatalogAPI.DTOs.User;
 using VehicleCatalogAPI.Infra.Adapters.Interfaces;
-using VehicleCatalogAPI.Repositories.Interfaces;
+using VehicleCatalogAPI.Models.Repositories;
 
 namespace VehicleCatalogAPI.Services;
 

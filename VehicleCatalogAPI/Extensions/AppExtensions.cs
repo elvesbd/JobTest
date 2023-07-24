@@ -6,7 +6,7 @@ using VehicleCatalogAPI.Data;
 using VehicleCatalogAPI.Infra.Adapters.Interfaces;
 using VehicleCatalogAPI.Infra.Adapters;
 using VehicleCatalogAPI.Repositories;
-using VehicleCatalogAPI.Repositories.Interfaces;
+using VehicleCatalogAPI.Models.Repositories;
 using VehicleCatalogAPI.Services;
 using System.Text.Json.Serialization;
 using Microsoft.OpenApi.Models;
