@@ -13,10 +13,10 @@ public class User : Entity
         PasswordHash = passwordHash;
     }
 
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string CellPhone { get; set; }
-    public List<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
+    public string Name { get; private set; }
+    public string Email { get; private set; }
+    public string CellPhone { get; private set; }
+    public List<Vehicle> Vehicles { get; private set; } = new List<Vehicle>();
 
     [JsonIgnore]
     public string? PasswordHash { get; set; }

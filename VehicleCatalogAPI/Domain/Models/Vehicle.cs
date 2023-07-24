@@ -13,11 +13,11 @@ public class Vehicle : Entity
         UserId = userId;
     }
 
-    public string Name { get; set; }
-    public string Brand { get; set; }
-    public string Model { get; set; }
-    public string Image { get; set; }
-    public Guid UserId { get; set; }
+    public string Name { get; private set; }
+    public string Brand { get; private set; }
+    public string Model { get; private set; }
+    public string Image { get; private set; }
+    public Guid UserId { get; private set; }
 
     public User? User { get; set; }
 }
