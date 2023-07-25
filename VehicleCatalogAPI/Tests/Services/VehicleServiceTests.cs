@@ -105,6 +105,18 @@ public class VehicleServiceTests
 
     [TestMethod]
     [TestCategory("Services")]
+    public async Task Ensures_to_not_return_a_vehicle_by_id()
+    {
+        _repositoryMock?.Setup(x => x.GetOneAsync(_Id)).ReturnsAsync((Vehicle?)null);
+
+        var result = await Assert.ThrowsExceptionAsync<VehicleNotFoundException>
+        (
+            async () => await _vehicleService.GetOneAsync(_Id)
+        );
+    }
+
+    [TestMethod]
+    [TestCategory("Services")]
     public async Task Ensures_to_return_a_vehicle_by_id()
     {
         _repositoryMock?.Setup(x => x.GetOneAsync(_vehicle.Id)).ReturnsAsync(_vehicle);
@@ -117,13 +129,13 @@ public class VehicleServiceTests
 
     [TestMethod]
     [TestCategory("Services")]
-    public async Task Ensures_to_not_return_a_vehicle_by_id()
+    public async Task Ensures_to_return_a_created_vehicle()
     {
-        _repositoryMock?.Setup(x => x.GetOneAsync(_Id)).ReturnsAsync((Vehicle)null);
+        _repositoryMock?.Setup(x => x.AddAsync(It.IsAny<Vehicle>())).ReturnsAsync(_vehicle);
 
-        var result = await Assert.ThrowsExceptionAsync<VehicleNotFoundException>
-        (
-            async () => await _vehicleService.GetOneAsync(_Id)
-        );
+        var result = await _vehicleService.AddAsync(_dto, _userId);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(result, _vehicle);
     }
 }
