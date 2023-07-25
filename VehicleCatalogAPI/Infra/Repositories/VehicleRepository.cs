@@ -18,6 +18,7 @@ public class VehicleRepository : IVehicleRepository
     {
         return await _dbContext.Vehicles
             .AsNoTracking()
+            .OrderByDescending(vehicle => vehicle.PriceInCents)
             .ToListAsync();
     }
 
@@ -26,6 +27,7 @@ public class VehicleRepository : IVehicleRepository
         return await _dbContext.Vehicles
             .AsNoTracking()
             .Where(vehicle => vehicle.UserId == userId)
+            .OrderByDescending(vehicle => vehicle.PriceInCents)
             .ToListAsync();
     }
 
