@@ -64,7 +64,7 @@ public class VehicleServiceTests
     {
         _repositoryMock?.Setup(x => x.GetAsync()).ReturnsAsync(_vehicles);
 
-        var result = await _vehicleService.GetAsync();
+        var result = await _vehicleService!.GetAsync();
 
         Assert.IsNotNull(result);
         Assert.AreEqual(_vehicles, result);
@@ -76,7 +76,7 @@ public class VehicleServiceTests
     {
         _repositoryMock?.Setup(x => x.GetAsync()).ReturnsAsync(new List<Vehicle>());
 
-        var result = await _vehicleService.GetAsync();
+        var result = await _vehicleService!.GetAsync();
 
         Assert.IsNotNull(result);
         Assert.AreEqual(0, result.Count);
@@ -88,7 +88,7 @@ public class VehicleServiceTests
     {
         _repositoryMock?.Setup(x => x.GetByUserIdAsync(_userId)).ReturnsAsync(_vehicles);
 
-        var result = await _vehicleService.GetByUserIdAsync(_userId);
+        var result = await _vehicleService!.GetByUserIdAsync(_userId);
 
         Assert.IsNotNull(result);
         Assert.AreEqual(_userId, result?.FirstOrDefault()?.UserId);
@@ -101,7 +101,7 @@ public class VehicleServiceTests
     {
         _repositoryMock?.Setup(x => x.GetByUserIdAsync(_userId)).ReturnsAsync(new List<Vehicle>());
 
-        var result = await _vehicleService.GetByUserIdAsync(_userId);
+        var result = await _vehicleService!.GetByUserIdAsync(_userId);
 
         Assert.IsNotNull(result);
         Assert.AreEqual(0, result.Count);
@@ -115,7 +115,7 @@ public class VehicleServiceTests
 
         var result = await Assert.ThrowsExceptionAsync<VehicleNotFoundException>
         (
-            async () => await _vehicleService.GetOneAsync(_Id)
+            async () => await _vehicleService!.GetOneAsync(_Id)
         );
     }
 
@@ -125,7 +125,7 @@ public class VehicleServiceTests
     {
         _repositoryMock?.Setup(x => x.GetOneAsync(_vehicle.Id)).ReturnsAsync(_vehicle);
 
-        var result = await _vehicleService.GetOneAsync(_vehicle.Id);
+        var result = await _vehicleService!.GetOneAsync(_vehicle.Id);
 
         Assert.IsNotNull(result);
         Assert.AreEqual(result, _vehicle);
@@ -137,7 +137,7 @@ public class VehicleServiceTests
     {
         _repositoryMock?.Setup(x => x.AddAsync(It.IsAny<Vehicle>())).ReturnsAsync(_vehicle);
 
-        var result = await _vehicleService.AddAsync(_dto, _userId);
+        var result = await _vehicleService!.AddAsync(_dto, _userId);
 
         Assert.IsNotNull(result);
         Assert.AreEqual(result, _vehicle);
@@ -151,7 +151,7 @@ public class VehicleServiceTests
 
         var result = await Assert.ThrowsExceptionAsync<VehicleNotFoundException>
         (
-            async () => await _vehicleService.UpdateAsync(_dto, _Id)
+            async () => await _vehicleService!.UpdateAsync(_dto, _Id)
         );
     }
 
@@ -162,7 +162,7 @@ public class VehicleServiceTests
         _repositoryMock?.Setup(x => x.GetOneAsync(_vehicle.Id)).ReturnsAsync(_vehicle);
         _repositoryMock?.Setup(x => x.UpdateAsync(_vehicle)).ReturnsAsync(_vehicle);
 
-        var result = await _vehicleService.UpdateAsync(_dto, _vehicle.Id);
+        var result = await _vehicleService!.UpdateAsync(_dto, _vehicle.Id);
 
         Assert.IsNotNull(result);
         Assert.AreEqual(result, _vehicle);
@@ -176,7 +176,7 @@ public class VehicleServiceTests
 
         var result = await Assert.ThrowsExceptionAsync<VehicleNotFoundException>
         (
-            async () => await _vehicleService.DeleteAsync(_Id)
+            async () => await _vehicleService!.DeleteAsync(_Id)
         );
     }
 
@@ -186,7 +186,7 @@ public class VehicleServiceTests
     {
         _repositoryMock?.Setup(x => x.GetOneAsync(_vehicle.Id)).ReturnsAsync(_vehicle);
 
-        await _vehicleService.DeleteAsync(_vehicle.Id);
+        await _vehicleService!.DeleteAsync(_vehicle.Id);
 
         _repositoryMock?.Verify(x => x.DeleteAsync(_vehicle), Times.Once);
     }

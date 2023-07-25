@@ -44,7 +44,7 @@ public class UserServiceTests
            mockUser
         );
 
-        var result = await _userService.GetByEmailAsync(_dto.Email);
+        var result = await _userService!.GetByEmailAsync(_dto.Email);
         Assert.IsNotNull(result);
     }
 
@@ -66,7 +66,7 @@ public class UserServiceTests
 
         _repositoryMock?.Setup(x => x.AddAsync(It.IsAny<User>())).ReturnsAsync(mockUser);
 
-        var result = await _userService.AddAsync(_dto);
+        var result = await _userService!.AddAsync(_dto);
         Assert.IsNotNull(result);
     }
 }
