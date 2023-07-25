@@ -32,10 +32,15 @@ public class VehicleMap : IEntityTypeConfiguration<Vehicle>
                .HasMaxLength(80);
 
         builder.Property("Image")
-            .IsRequired(false)
+            .IsRequired()
             .HasColumnName("Image")
             .HasColumnType("VARCHAR")
             .HasMaxLength(2000);
+
+        builder.Property("PriceInCents")
+            .IsRequired()
+            .HasColumnName("PriceInCents")
+            .HasColumnType("BIGINT");
 
         builder.HasOne(x => x.User)
             .WithMany(x => x.Vehicles)
