@@ -7,8 +7,8 @@ using VehicleCatalogAPI.Services;
 [TestClass]
 public class TokenServiceTests
 {
-    private Mock<ITokenGenerator>? tokenMock;
-    private TokenService? tokenService;
+    private Mock<ITokenGenerator>? _tokenMock;
+    private TokenService? _tokenService;
     private readonly User _user = new User
     (
         "John Doe",
@@ -20,8 +20,8 @@ public class TokenServiceTests
     [TestInitialize]
     public void TestInitialize()
     {
-        tokenMock = new Mock<ITokenGenerator>();
-        tokenService = new TokenService(tokenMock.Object);
+        _tokenMock = new Mock<ITokenGenerator>();
+        _tokenService = new TokenService(_tokenMock.Object);
     }
 
     [TestMethod]
@@ -30,11 +30,11 @@ public class TokenServiceTests
     {
         var mocToken = "any_token";
 
-        tokenMock?.Setup(x => x.Generate(_user)).Returns(
+        _tokenMock?.Setup(x => x.Generate(_user)).Returns(
            mocToken
         );
 
-        var result = tokenService?.GenerateToken(_user);
+        var result = _tokenService?.GenerateToken(_user);
         Assert.IsNotNull(result);
         Assert.AreEqual(result, mocToken);
     }

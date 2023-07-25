@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using VehicleCatalogAPI.Domain.Models;
@@ -10,9 +9,9 @@ using VehicleCatalogAPI.Services;
 [TestClass]
 public class UserServiceTests
 {
-    private Mock<IPasswordHasher>? passwordHasherMock;
-    private Mock<IUserRepository>? repositoryMock;
-    private UserService? userService;
+    private Mock<IPasswordHasher>? _passwordHasherMock;
+    private Mock<IUserRepository>? _repositoryMock;
+    private UserService? _userService;
     private readonly AddUserDto _dto = new AddUserDto
     {
         Name = "John Doe",
@@ -24,9 +23,9 @@ public class UserServiceTests
     [TestInitialize]
     public void TestInitialize()
     {
-        passwordHasherMock = new Mock<IPasswordHasher>();
-        repositoryMock = new Mock<IUserRepository>();
-        userService = new UserService(passwordHasherMock.Object, repositoryMock.Object);
+        _passwordHasherMock = new Mock<IPasswordHasher>();
+        _repositoryMock = new Mock<IUserRepository>();
+        _userService = new UserService(_passwordHasherMock.Object, _repositoryMock.Object);
     }
 
     [TestMethod]
@@ -41,11 +40,11 @@ public class UserServiceTests
             "any_hash"
         );
 
-        repositoryMock?.Setup(x => x.GetByEmailAsync(_dto.Email)).ReturnsAsync(
+        _repositoryMock?.Setup(x => x.GetByEmailAsync(_dto.Email)).ReturnsAsync(
            mockUser
         );
 
-        var result = await userService.GetByEmailAsync(_dto.Email);
+        var result = await _userService.GetByEmailAsync(_dto.Email);
         Assert.IsNotNull(result);
     }
 
@@ -54,8 +53,7 @@ public class UserServiceTests
     public async Task Ensures_that_a_user_is_successfully_added()
     {
         var mockHashed = "any_hash";
-        Debug.Assert(mockHashed == "any_hash");
-        passwordHasherMock?.Setup(x => x.Hash(_dto.Password)).Returns(
+        _passwordHasherMock?.Setup(x => x.Hash(_dto.Password)).Returns(
           mockHashed
        );
         var mockUser = new User
@@ -66,9 +64,9 @@ public class UserServiceTests
             mockHashed
         );
 
-        repositoryMock?.Setup(x => x.AddAsync(It.IsAny<User>())).ReturnsAsync(mockUser);
+        _repositoryMock?.Setup(x => x.AddAsync(It.IsAny<User>())).ReturnsAsync(mockUser);
 
-        var result = await userService.AddAsync(_dto);
+        var result = await _userService.AddAsync(_dto);
         Assert.IsNotNull(result);
     }
 }
