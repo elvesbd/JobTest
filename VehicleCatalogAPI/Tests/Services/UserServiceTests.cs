@@ -60,9 +60,9 @@ public class UserServiceTests
        );
         var mockUser = new User
         (
-            "Elvis Presley",
-            "elvesp@mail.com",
-            "85999491212",
+            "John Doe",
+            "john.doe@example.com",
+            "85999491515",
             mockHashed
         );
 
