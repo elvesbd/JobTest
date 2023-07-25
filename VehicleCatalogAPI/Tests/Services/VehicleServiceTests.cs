@@ -163,4 +163,27 @@ public class VehicleServiceTests
         Assert.IsNotNull(result);
         Assert.AreEqual(result, _vehicle);
     }
+
+    [TestMethod]
+    [TestCategory("Services")]
+    public async Task Ensures_to_return_an_exception_if_vehicle_not_found_when_to_delete()
+    {
+        _repositoryMock?.Setup(x => x.GetOneAsync(_Id)).ReturnsAsync((Vehicle?)null);
+
+        var result = await Assert.ThrowsExceptionAsync<VehicleNotFoundException>
+        (
+            async () => await _vehicleService.DeleteAsync(_Id)
+        );
+    }
+
+    [TestMethod]
+    [TestCategory("Services")]
+    public async Task Ensures_to_delete_vehicle()
+    {
+        _repositoryMock?.Setup(x => x.GetOneAsync(_vehicle.Id)).ReturnsAsync(_vehicle);
+
+        await _vehicleService.DeleteAsync(_vehicle.Id);
+
+        _repositoryMock?.Verify(x => x.DeleteAsync(_vehicle), Times.Once);
+    }
 }
