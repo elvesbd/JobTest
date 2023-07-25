@@ -19,30 +19,34 @@ public class VehicleServiceTests
         Brand = "Toyota",
         Model = "SW4 3.0-D",
         Image = "https://image",
+        Price = "200.50"
     };
-    private readonly Vehicle _vehicle = new Vehicle
+    private readonly Vehicle _vehicle = Vehicle.CreateVehicle
     (
         "Hilux",
         "Toyota",
         "SW4 3.0-D",
         "https://image",
+        "200.50",
         new Guid("8b0b1d6f-e875-4879-90ec-484e6f14bc78")
     );
     private readonly List<Vehicle> _vehicles = new List<Vehicle>
         {
-            new Vehicle(
+            Vehicle.CreateVehicle(
                 "Hilux",
                 "Toyota",
                 "SW4 3.0-D",
                 "https://image1",
+                "50.000",
                 new Guid("8b0b1d6f-e875-4879-90ec-484e6f14bc78")
             ),
-            new Vehicle
+            Vehicle.CreateVehicle
             (
                 "Corolla",
                 "Toyota",
                 "XEi 2.0",
                 "https://image2",
+                "80.000",
                 new Guid("8b0b1d6f-e875-4879-90ec-484e6f14bc78")
             ),
         };

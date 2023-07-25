@@ -15,4 +15,7 @@ public class VehicleDto
 
     [Required(ErrorMessage = "Image is required!")]
     public string Image { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Price is required!")]
+    public string Price { get; set; } = string.Empty;
 }

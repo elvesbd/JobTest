@@ -34,12 +34,13 @@ public class VehicleService
 
     public async Task<Vehicle> AddAsync(VehicleDto dto, Guid userId)
     {
-        var vehicle = new Vehicle
+        var vehicle = Vehicle.CreateVehicle
         (
             dto.Name,
             dto.Brand,
             dto.Model,
             dto.Image,
+            dto.Price,
             userId
         );
         return await _repository.AddAsync(vehicle);
@@ -51,13 +52,18 @@ public class VehicleService
         if (vehicle == null)
             throw new VehicleNotFoundException();
 
-        vehicle.SetProperties(
+        var updatedVehicle = Vehicle.CreateVehicle
+        (
             dto.Name,
             dto.Brand,
             dto.Model,
-            dto.Image
+            dto.Image,
+            dto.Price,
+            vehicle.UserId
         );
-        return await _repository.UpdateAsync(vehicle);
+
+        await _repository.UpdateAsync(vehicle);
+        return vehicle;
     }
 
     public async Task DeleteAsync(Guid id)
