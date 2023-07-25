@@ -25,7 +25,11 @@ public class VehicleService
 
     public async Task<Vehicle?> GetOneAsync(Guid id)
     {
-        return await _repository.GetOneAsync(id);
+        var vehicle = await _repository.GetOneAsync(id);
+        if (vehicle == null)
+            throw new VehicleNotFoundException();
+
+        return vehicle;
     }
 
     public async Task<Vehicle> AddAsync(VehicleDto dto, Guid userId)

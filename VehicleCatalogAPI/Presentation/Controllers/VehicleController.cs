@@ -44,6 +44,10 @@ public class VehicleController : ControllerBase
             var vehicle = await _vehicleService.GetOneAsync(id);
             return Ok(new ResultDto<Vehicle?>(vehicle, null));
         }
+        catch (VehicleNotFoundException ex)
+        {
+            return StatusCode(404, new ResultDto<string>(ex.Message));
+        }
         catch (Exception)
         {
             return StatusCode(500, new ResultDto<string>("Internal server error!"));
