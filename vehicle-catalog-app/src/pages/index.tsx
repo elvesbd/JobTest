@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
+import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
+import { deleteCookie, getCookie } from "cookies-next";
+
 import SearchInput from "../components/SearchInput";
 import Header from "../components/Header";
 import Vehicle from "../components/Vehicle";
+import Main from "../components/Main";
 import api from "../services/api";
 import car1 from '../assets/car1.jpg'
-import car2 from '../assets/car2.jpg'
-import car3 from '../assets/car3.jpg'
-import Main from "../components/Main";
-import { deleteCookie, getCookie } from "cookies-next";
-import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
+import { formatCurrency } from "../utils/format-currency";
 
 interface VehicleProps {
   id: string;
@@ -17,6 +17,7 @@ interface VehicleProps {
   brand: string;
   image: string;
   model: string;
+  priceInCents: number;
 }
 
 interface VehicleData {
@@ -77,36 +78,16 @@ export default function Home() {
       </Header>
       <SearchInput />
       <Main>
-        {/* { vehicles.map((vehicle) => (
+        { vehicles.map((vehicle) => (
           <Vehicle
           key={vehicle.id}
           image={car1}
           name={vehicle.name}
           brand={vehicle.brand}
           model={vehicle.model}
+          price={formatCurrency(vehicle.priceInCents)}
         />
         )) }
-        <Vehicle
-          key=""
-          image={car1}
-          name=""
-          brand=""
-          model=""
-        />
-        <Vehicle
-          key=""
-          image={car2}
-          name=""
-          brand=""
-          model=""
-        />
-        <Vehicle
-          key=""
-          image={car3}
-          name=""
-          brand=""
-          model=""
-        /> */}
       </Main>
     </>
   )

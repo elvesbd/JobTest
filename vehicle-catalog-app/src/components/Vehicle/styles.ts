@@ -21,6 +21,12 @@ export const ContainerVehicle = styled('a', {
     span: {
       color: '$gray400',
       fontSize: '$sm',
+    },
+
+    'span:last-child': {
+      fontSize: '20px',
+      fontWeight: 'bold',
+      color: '$green500'
     }
   }
 })

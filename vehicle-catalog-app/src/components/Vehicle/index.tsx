@@ -6,9 +6,10 @@ interface VehicleProps {
   name: string;
   brand: string;
   model: string;
+  price: string
 }
 
-export default function Vehicle({ image, name, brand, model }: VehicleProps) {
+export default function Vehicle({ image, name, brand, model, price }: VehicleProps) {
   return (
     <ContainerVehicle>
       <Image
@@ -18,9 +19,9 @@ export default function Vehicle({ image, name, brand, model }: VehicleProps) {
         alt="Image de um carro"
       />
       <footer>
-        <strong>{name}</strong>
+        <strong>{name} • {model}</strong>
         <span>{brand}</span>
-        <span>{model}</span>
+        <span>{price}</span>
       </footer>
     </ContainerVehicle>
   )
