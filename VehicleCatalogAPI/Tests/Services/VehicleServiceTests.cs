@@ -75,4 +75,17 @@ public class VehicleServiceTests
         Assert.IsNotNull(result);
         Assert.AreEqual(0, result.Count);
     }
+
+    [TestMethod]
+    [TestCategory("Services")]
+    public async Task Ensures_to_returns_a_list_of_all_vehicles_by_user_id()
+    {
+        _repositoryMock?.Setup(x => x.GetByUserIdAsync(_userId)).ReturnsAsync(_vehicles);
+
+        var result = await _vehicleService.GetByUserIdAsync(_userId);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(_userId, result?.FirstOrDefault()?.UserId);
+        Assert.AreEqual(_vehicles, result);
+    }
 }
