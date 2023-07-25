@@ -63,4 +63,16 @@ public class VehicleServiceTests
         Assert.IsNotNull(result);
         Assert.AreEqual(_vehicles, result);
     }
+
+    [TestMethod]
+    [TestCategory("Services")]
+    public async Task Ensures_to_returns_a_empty_list_if_not_exists_vehicles()
+    {
+        _repositoryMock?.Setup(x => x.GetAsync()).ReturnsAsync(new List<Vehicle>());
+
+        var result = await _vehicleService.GetAsync();
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(0, result.Count);
+    }
 }
