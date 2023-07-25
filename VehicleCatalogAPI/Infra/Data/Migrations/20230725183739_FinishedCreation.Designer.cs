@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VehicleCatalogAPI.Data;
 
@@ -11,9 +12,11 @@ using VehicleCatalogAPI.Data;
 namespace VehicleCatalogAPI.Migrations
 {
     [DbContext(typeof(VehicleCatalogDbContext))]
-    partial class VehicleCatalogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230725183739_FinishedCreation")]
+    partial class FinishedCreation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,6 +73,7 @@ namespace VehicleCatalogAPI.Migrations
                         .HasColumnName("Brand");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasMaxLength(2000)
                         .HasColumnType("VARCHAR")
                         .HasColumnName("Image");
@@ -85,6 +89,10 @@ namespace VehicleCatalogAPI.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("VARCHAR")
                         .HasColumnName("Name");
+
+                    b.Property<long>("PriceInCents")
+                        .HasColumnType("BIGINT")
+                        .HasColumnName("PriceInCents");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");

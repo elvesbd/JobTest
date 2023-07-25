@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace VehicleCatalogAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreation : Migration
+    public partial class FinishedCreation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,7 +34,8 @@ namespace VehicleCatalogAPI.Migrations
                     Name = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
                     Brand = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
                     Model = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
-                    Image = table.Column<string>(type: "VARCHAR(2000)", maxLength: 2000, nullable: true),
+                    Image = table.Column<string>(type: "VARCHAR(2000)", maxLength: 2000, nullable: false),
+                    PriceInCents = table.Column<long>(type: "BIGINT", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
